@@ -1,6 +1,6 @@
 # Puppetmaster - Base
 
-Base image for building _puppets_. Can be used as a base image for building your own, customized puppet images.
+Base image for building _puppets_. Can be used in puppet manifests or as a base image for your own custom puppet image.
 
 ## Details
 
@@ -12,4 +12,4 @@ When a request is made to a task route, a call to a GPT provider (e.g. OpenAI's 
 2. Execute the plan
 3. Return the result
 
-During these steps, the base image will use the tools defined in the puppet manifest to complete the task. Also, it will interact with other puppets and services in the k8s cluster if any are available and the puppet decides to do so.
+During these steps, the puppet can use the tools defined in the puppet manifest to complete the task. Also, it will interact with other puppets and services in the k8s cluster if any are available and it decides to do so.
