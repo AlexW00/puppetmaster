@@ -1,16 +1,12 @@
 {
-  "name": "puppetmaster",
+  "name": "base",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "compiler",
-    "runtime",
-    "base"
-  ]
+  "license": "ISC"
 }

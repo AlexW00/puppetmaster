@@ -17,10 +17,11 @@ The Puppetmaster framework consists of the following components:
 
 - [Compiler](compiler/README.md): CLI tool to compile a puppet manifest file into a Dockerfile (`compile`) and build the Dockerfile into a Docker image (`build`).
 - [Runtime](runtime/README.md): The core component of the puppetmaster system. It is responsible for managing puppets and friendship/service discovery.
+- [Base](base/README.md): Base image for building _puppets_. Can be used as a base image for building your own, customized puppet images.
 - [Helm](helm/README.md): Helm chart to deploy the puppetmaster system to a k8s cluster.
 
 ## Usage
 
-To build & publish your own puppets, you can use the [puppetmaster compiler](compiler/README.md).
+To build & publish your own puppets, you can use the [puppetmaster compiler](compiler/README.md). Typically, you would define a puppet manifest file, compile it into a Dockerfile and build the Dockerfile into a Docker image using the base image provided by the puppetmaster framework. If you find the base image too restrictive, you can use it as a base image for building your own, customized puppet images.
 
 To deploy the Puppetmaster framework to a k8s cluster, you can use the [puppetmaster helm chart](helm/README.md) and configure it to your needs (e.g. by using your own puppet images and configuring friendships and service discovery).
