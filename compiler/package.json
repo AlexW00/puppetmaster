@@ -1,0 +1,19 @@
+{
+	"name": "compiler",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc",
+		"start": "node build/index.js",
+		"build:start": "npm run build && npm start",
+		"dev": "nodemon --exec ts-node src/index.ts"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"nodemon": "^3.0.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
+	}
+}
