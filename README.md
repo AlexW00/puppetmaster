@@ -1,5 +1,7 @@
 # Puppetmaster
 
+STATE: `IDEATION`
+
 **Puppetmaster** is an k8s framework for building and running GPT-powered agents, called *puppets*.
 
 *Puppets* are GPT-powered agents that can complete a defined set of tasks using a set of *tools*.
