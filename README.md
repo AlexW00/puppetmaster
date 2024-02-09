@@ -21,6 +21,6 @@ The Puppetmaster framework consists of the following components:
 
 ## Usage
 
-To build your own puppets, you can use the [puppetmaster compiler](compiler/README.md) to build and publish your own puppets.
+To build & publish your own puppets, you can use the [puppetmaster compiler](compiler/README.md).
 
-To deploy the puppetmaster system to a k8s cluster, you can use the [puppetmaster helm chart](helm/README.md) and configure it to your needs (e.g. by using your own puppet images and configuring friendships and service discovery).
+To deploy the Puppetmaster framework to a k8s cluster, you can use the [puppetmaster helm chart](helm/README.md) and configure it to your needs (e.g. by using your own puppet images and configuring friendships and service discovery).
