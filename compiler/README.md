@@ -52,7 +52,7 @@ tasks:
       3. If the number of words is more than 10, summarize the text using the summarization tool
       4. Ask your hello-puppet friend to greet the user (if you can't reach your friend, just skip this step)
       5. Return the summary
-		parameters:
+    parameters:
       textToSummarize:
         type: string
         description: The text to summarize
