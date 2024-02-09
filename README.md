@@ -7,9 +7,9 @@ STATE: `IDEATION`
 _Puppets_ are GPT-powered agents that can complete a defined set of tasks using a set of _tools_.
 _Tools_ are stateless _functions_ or _programs_ owned by _puppets_ and used to complete tasks.
 
-Furthermore, puppets can interact with other _puppets_ ("friends") and normal containers ("services") by discovering them in the k8s cluster. This is discovery managed by the _puppetmaster_ and can be configured using friendship and service custom resources.
+Furthermore, puppets can interact with other _puppets_ ("friends") and normal containers ("services") by discovering them in the k8s cluster.
 
-The _puppetmaster_ is responsible for managing puppets and friendship/service discovery. It can be configured to allow friendships between puppets, and to allow puppets to discover and use services.
+The _puppetmaster_ is responsible for managing puppets and friendship/service discovery. By configuring _friendship_ custom resources, you can define which puppets are friends and how they can interact with each other. By configuring _service discovery_ custom resources, you can define how puppets can discover and interact with other containers running in the k8s cluster.
 
 ## Components
 
