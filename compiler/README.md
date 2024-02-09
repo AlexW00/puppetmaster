@@ -17,24 +17,24 @@ A puppet is a GPT-powered agent, that can complete a defined set of tasks using 
 name: hello-puppet
 type: puppet
 version: 1.0.0
-description: Says hello to a person 
+description: Says hello to a person
 image: base-puppet
 tasks:
-    greet:
-        description: Greets a person
-        instructions: |
-            Say hello to the person.
-        parameters:
-            name:
-                type: string
-                description: The name of the person to greet
-                optional: false
-        returns:
-            greeting:
-                type: string
-                description: The greeting
-                template: "Hello, $name!"
-                optional: false
+  greet:
+    description: Greets a person
+    instructions: |
+      Say hello to the person.
+    parameters:
+      name:
+        type: string
+        description: The name of the person to greet
+        optional: false
+    returns:
+      greeting:
+        type: string
+        description: The greeting
+        template: "Hello, $name!"
+        optional: false
 ```
 
 ```yaml
@@ -44,35 +44,35 @@ version: 1.0.0
 description: Summarizes a text
 image: base-puppet
 tasks:
-	summarize:
-        description: Summarizes a text
-        instructions: |
-            1. Count the number of words in the text
-            2. If the number of words is less than 10, return the text as the summary
-            3. If the number of words is more than 10, summarize the text using the summarization tool
-            4. Ask your hello-puppet friend to greet the user (if you can't reach your friend, just skip this step)
-            5. Return the summary
+  summarize:
+    description: Summarizes a text
+    instructions: |
+      1. Count the number of words in the text
+      2. If the number of words is less than 10, return the text as the summary
+      3. If the number of words is more than 10, summarize the text using the summarization tool
+      4. Ask your hello-puppet friend to greet the user (if you can't reach your friend, just skip this step)
+      5. Return the summary
 		parameters:
-            textToSummarize:
-                type: string
-                description: The text to summarize
-                optional: false
-        functions:
-            count-words:
-                version: 1.0.0
-                options:
-                    do-add-decimal-point: true
-        programs:
-            browser: {} # latest version, default options
-        returns:
-            summary:
-                type: string
-                description: The summary of the text
-                template: |
-                    <greeting>
-                    The text has <word-count> words.
-                    The summary of the text is: <summarized-text>
-                optional: false
+      textToSummarize:
+        type: string
+        description: The text to summarize
+          optional: false
+    functions:
+      count-words:
+        version: 1.0.0
+        options:
+          do-add-decimal-point: true
+    programs:
+        browser: {} # latest version, default options
+    returns:
+      summary:
+        type: string
+        description: The summary of the text
+        template: |
+          <greeting>
+          The text has <word-count> words.
+          The summary of the text is: <summarized-text>
+          optional: false
 functions: {} # functions used by all tasks
 programs: {} # programs used by all tasks
 ```
@@ -93,15 +93,15 @@ version: 1.0.0
 description: Count the number of words in a text
 image: busybox
 options:
-    do-add-decimal-point:
-        type: boolean
-        description: Add a decimal point to the result
-        default: false
+  do-add-decimal-point:
+    type: boolean
+    description: Add a decimal point to the result
+    default: false
 parameters:
-    text:
-        type: string
-        description: The text to count words in
-        optional: false
+  text:
+    type: string
+    description: The text to count words in
+    optional: false
 returns: The number of words in the text
 cmd: wc -w $text
 ```
@@ -117,25 +117,25 @@ version: 1.0.0
 description: Google search
 image: browser
 options:
-    do-allow-unsafe:
-        type: boolean
-        description: Allow unsafe browsing
-        default: false
-    max-commands:
-        type: integer
-        description: The maximum number of commands to execute
-        default: 10
+  do-allow-unsafe:
+    type: boolean
+    description: Allow unsafe browsing
+    default: false
+  max-commands:
+    type: integer
+    description: The maximum number of commands to execute
+    default: 10
 commands:
-    navigate:
-        description: Navigate to a URL
-        parameters:
-            url:
-                type: string
-                description: The URL to navigate to
-                optional: false
-        returns: The content of the page as a HTML string
-        cmd: navigate $url
-    # by default, every program also has a 'quit' command
+  navigate:
+    description: Navigate to a URL
+    parameters:
+      url:
+        type: string
+        description: The URL to navigate to
+        optional: false
+    returns: The content of the page as a HTML string
+    cmd: navigate $url
+  # by default, every program also has a 'quit' command
 ```
 
 ## Usage
