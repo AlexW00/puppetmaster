@@ -13,7 +13,7 @@ The _puppetmaster_ is responsible for managing puppets and friendship/service di
 
 ## Components
 
-The _puppetmaster_ consists of the following components:
+The Puppetmaster framework consists of the following components:
 
 - [Compiler](compiler/README.md): CLI tool to compile a puppet manifest file into a Dockerfile (`compile`) and build the Dockerfile into a Docker image (`build`).
 - [Runtime](runtime/README.md): The core component of the puppetmaster system. It is responsible for managing puppets and friendship/service discovery.
