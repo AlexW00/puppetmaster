@@ -1,0 +1,72 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: puppets.mydomain.org
+spec:
+  group: mydomain.org
+  names:
+    kind: Puppet
+    listKind: PuppetList
+    plural: puppets
+    singular: puppet
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                version:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                tasks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      instructions:
+                        type: string
+                      parameters:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            description:
+                              type: string
+                            optional:
+                              type: boolean
+                      returns:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            description:
+                              type: string
+                            template:
+                              type: string
+                            optional:
+                              type: boolean
+                functions:
+                  type: object
+                programs:
+                  type: object
