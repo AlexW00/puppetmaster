@@ -15,10 +15,9 @@ The _puppetmaster_ is responsible for managing puppets and friendship/service di
 
 The Puppetmaster framework consists of the following components:
 
-- [Compiler](compiler/README.md): CLI tool to compile a puppet manifest file into a Dockerfile (`compile`) and build the Dockerfile into a Docker image (`build`).
 - [Runtime](runtime/README.md): The core component of the puppetmaster system. It is responsible for managing puppets and friendship/service discovery.
 - [Base](base/README.md): Base image for building _puppets_. Can be used as a base image for building your own, customized puppet images.
-- [Helm](helm/README.md): Helm chart to deploy the puppetmaster system to a k8s cluster.
+- [Helm](helm/README.md): Helm chart used to deploy the Puppetmaster framework to a k8s cluster. Using CRDs, you can define puppets, friendships and service discovery.
 
 ## Usage
 
