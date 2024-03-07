@@ -64,12 +64,10 @@ spec:
           description: The text to summarize
           optional: false
       functions:
-        count-words:
+        - name: count-words
           version: 1.0.0
           options:
             do-add-decimal-point: true
-      programs:
-        browser: {} # latest version, default options
       returns:
         summary:
           type: string
@@ -84,7 +82,6 @@ spec:
 ### Tools
 
 Tools are stateless commands that accept input and return output, and can be used by puppets to complete tasks.
-The difference between a function and a program is that a program does not exit after a single command and allows puppets to interact with it by sending commands and receiving results.
 
 #### Function
 
@@ -113,40 +110,4 @@ spec:
       optional: false
   returns: "The number of words in the text"
   cmd: "wc -w $text"
-```
-
-#### Program
-
-A program is a stateful tool that can accept commands and return results.
-
-```yaml
-apiVersion: puppetmaster.org/v1
-kind: Program
-metadata:
-  name: browser
-spec:
-  name: browser
-  type: program
-  version: 1.0.0
-  description: Google search
-  image: browser
-  options:
-    do-allow-unsafe:
-      type: boolean
-      description: Allow unsafe browsing
-      default: false
-    max-commands:
-      type: integer
-      description: The maximum number of commands to execute
-      default: 10
-  commands:
-    navigate:
-      description: Navigate to a URL
-      parameters:
-        url:
-          type: string
-          description: The URL to navigate to
-          optional: false
-      returns: "The content of the page as a HTML string"
-      cmd: "navigate $url"
 ```

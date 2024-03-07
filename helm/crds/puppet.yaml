@@ -31,42 +31,54 @@ spec:
                   type: string
                 image:
                   type: string
-                skill:
-                  type: array
-                  items:
+                            abilities:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  instructions:
+                    type: string
+                  parameters:
                     type: object
-                    properties:
-                      name:
-                        type: string
-                      description:
-                        type: string
-                      instructions:
-                        type: string
-                      parameters:
-                        type: object
-                        additionalProperties:
+                    additionalProperties:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        description:
+                          type: string
+                        optional:
+                          type: boolean
+                  returns:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        description:
+                          type: string
+                        template:
+                          type: string
+                        optional:
+                          type: boolean
+                  functions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        version:
+                          type: string
+                        options:
                           type: object
-                          properties:
-                            type:
-                              type: string
-                            description:
-                              type: string
-                            optional:
-                              type: boolean
-                      returns:
-                        type: object
-                        additionalProperties:
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                            description:
-                              type: string
-                            template:
-                              type: string
-                            optional:
-                              type: boolean
-                functions:
-                  type: object
-                programs:
-                  type: object
+                          additionalProperties:
+                            type: object
+                            properties:
+                              type:
+                                type: string

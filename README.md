@@ -5,7 +5,7 @@ STATE: `IDEATION`
 **Puppetmaster** is an k8s framework for building and running GPT-powered agents, called _puppets_.
 
 _Puppets_ are GPT-powered agents that can have a set of abilities, which they can complete using a set of _tools_.
-_Tools_ are stateless _functions_ or _programs_ owned by _puppets_ and used during the execution of abilities.
+_Tools_ are stateless _functions_ owned by _puppets_ and used during the execution of abilities.
 
 Furthermore, puppets can interact with other _puppets_ ("friends") and normal containers ("services") by discovering them in the k8s cluster.
 
