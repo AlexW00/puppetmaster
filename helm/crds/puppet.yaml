@@ -31,7 +31,7 @@ spec:
                   type: string
                 image:
                   type: string
-                tasks:
+                skill:
                   type: array
                   items:
                     type: object

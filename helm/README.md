@@ -8,7 +8,7 @@ The Puppetmaster Helm chart defines the following custom resource definitions:
 
 ### [Puppet](./crds/puppet.yaml)
 
-A puppet is a GPT-powered agent, that can complete a defined set of tasks using a set of [tools](#tools).
+A puppet is a GPT-powered agent, that can complete tasks defined in its abilities using a set of [tools](#tools).
 
 ```yaml
 apiVersion: puppetmaster.org/v1
@@ -21,7 +21,7 @@ spec:
   version: 1.0.0
   description: Says hello to a person
   image: base-puppet
-  tasks:
+  abilities:
     - name: greet
       description: Greets a person
       instructions: "Say hello to the person."
@@ -49,7 +49,7 @@ spec:
   version: 1.0.0
   description: Summarizes a text
   image: base-puppet
-  tasks:
+  abilities:
     - name: summarize
       description: Summarizes a text
       instructions: |

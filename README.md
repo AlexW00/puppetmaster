@@ -4,8 +4,8 @@ STATE: `IDEATION`
 
 **Puppetmaster** is an k8s framework for building and running GPT-powered agents, called _puppets_.
 
-_Puppets_ are GPT-powered agents that can complete a defined set of tasks using a set of _tools_.
-_Tools_ are stateless _functions_ or _programs_ owned by _puppets_ and used to complete tasks.
+_Puppets_ are GPT-powered agents that can have a set of abilities, which they can complete using a set of _tools_.
+_Tools_ are stateless _functions_ or _programs_ owned by _puppets_ and used during the execution of abilities.
 
 Furthermore, puppets can interact with other _puppets_ ("friends") and normal containers ("services") by discovering them in the k8s cluster.
 
@@ -15,12 +15,13 @@ The _puppetmaster_ is responsible for managing puppets and friendship/service di
 
 The Puppetmaster framework consists of the following components:
 
-- [Runtime](runtime/README.md): The core component of the puppetmaster system. It is responsible for managing puppets and friendship/service discovery.
+- [Controller](controller/README.md): The core component of the puppetmaster system. It is responsible for managing puppets and friendship/service discovery.
 - [Base](base/README.md): Base image for building _puppets_. Can be used as a base image for building your own, customized puppet images.
 - [Helm](helm/README.md): Helm chart used to deploy the Puppetmaster framework to a k8s cluster. Using CRDs, you can define puppets, friendships and service discovery.
 
 ## Usage
 
-To build & publish your own puppets, you can use the [puppetmaster compiler](compiler/README.md). Typically, you would define a puppet manifest file, compile it into a Dockerfile and build the Dockerfile into a Docker image using the base image provided by the puppetmaster framework. If you find the base image too restrictive, you can use it as a base image for building your own, customized puppet images.
+To build & publish your own puppets, use the [base image](base/README.md) as a base image for your own, customized puppet images. The base image is a web server that creates dynamic routes based on the tasks defined in a [puppet manifest](compiler/README.md).
+If you find the base image too restrictive, you can use it as a base image for building your own, customized puppet images.
 
 To deploy the Puppetmaster framework to a k8s cluster, you can use the [puppetmaster helm chart](helm/README.md) and configure it to your needs (e.g. by using your own puppet images and configuring friendships and service discovery).
