@@ -1,9 +1,12 @@
 import { parse } from "yaml";
 
-export interface PuppetSpec {
+export interface NamedAndVersioned {
 	name: string;
-	type: string;
 	version: string;
+}
+
+export interface PuppetSpec extends NamedAndVersioned {
+	type: string;
 	description: string;
 	image: string;
 	abilities: AbilitySpec[];
@@ -14,13 +17,11 @@ export interface AbilitySpec {
 	description: string;
 	instructions: string;
 	parameters: ParametersSpec;
+	usableFunction: FunctionUseSpec[];
 	returns: { [key: string]: ReturnSpec };
-	functions: FunctionSpec[];
 }
 
-export interface FunctionSpec {
-	name: string;
-	version: string;
+export interface FunctionUseSpec extends NamedAndVersioned {
 	options: { [key: string]: any };
 }
 

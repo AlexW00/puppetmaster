@@ -2,16 +2,12 @@ import express, { Express, Request, Response } from "express";
 import { parsePuppetSpec } from "./types/PuppetSpec";
 import { createInfoRoute } from "./routes/InfoRoute";
 import { createAbilityRoute } from "./routes/AbilityRoute";
-import { OpenAiAdapter } from "./llm/OpenAiAdapter";
 import fs from "fs";
 import bodyParser from "body-parser";
 import { getEnvVarOrDefault, getEnvVarOrThrow } from "./util/getEnvVarOrThrow";
 
 const app: Express = express();
 const port = getEnvVarOrDefault("PORT", "3000");
-
-const puppetMasterHost = getEnvVarOrThrow("PUPPET_MASTER_HOST");
-const puppetMasterPort = getEnvVarOrThrow("PUPPET_MASTER_PORT");
 
 const puppetSpecYamlFilename = getEnvVarOrThrow("PUPPET_SPEC_YAML_FILENAME");
 const puppetSpecYaml = fs.readFileSync(puppetSpecYamlFilename, "utf8");
@@ -28,7 +24,5 @@ app.listen(port, () => {
 	console.log(`[server]: Server is running at http://localhost:${port}`);
 
 	createInfoRoute(app, puppetSpec);
-	puppetSpec.abilities.forEach((ability) =>
-		createAbilityRoute(app, ability, OpenAiAdapter)
-	);
+	puppetSpec.abilities.forEach((ability) => createAbilityRoute(app, ability));
 });
