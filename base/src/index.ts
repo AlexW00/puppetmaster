@@ -5,12 +5,15 @@ import { createAbilityRoute } from "./routes/AbilityRoute";
 import { OpenAiAdapter } from "./llm/OpenAiAdapter";
 import fs from "fs";
 import bodyParser from "body-parser";
+import { getEnvVarOrDefault, getEnvVarOrThrow } from "./util/getEnvVarOrThrow";
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = getEnvVarOrDefault("PORT", "3000");
 
-const puppetSpecYamlFilename = (process.env.PUPPET_SPEC_FILENAME =
-	"./test/test-spec.yaml");
+const puppetMasterHost = getEnvVarOrThrow("PUPPET_MASTER_HOST");
+const puppetMasterPort = getEnvVarOrThrow("PUPPET_MASTER_PORT");
+
+const puppetSpecYamlFilename = getEnvVarOrThrow("PUPPET_SPEC_YAML_FILENAME");
 const puppetSpecYaml = fs.readFileSync(puppetSpecYamlFilename, "utf8");
 const puppetSpec = parsePuppetSpec(puppetSpecYaml);
 
