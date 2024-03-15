@@ -3,7 +3,7 @@ import {
 	NamedAndVersioned,
 	PuppetSpec,
 } from "../types/PuppetSpec";
-import { getEnvVarOrDefault } from "../util/getEnvVarOrThrow";
+import { getEnvVarOrDefault, getEnvVarOrThrow } from "../util/getEnvVarOrThrow";
 
 export interface PuppetMasterControllerOptions {
 	host: string;
@@ -12,22 +12,29 @@ export interface PuppetMasterControllerOptions {
 
 class PuppetMaster {
 	private options: PuppetMasterControllerOptions;
+	private puppetId: string;
 
 	constructor(options: PuppetMasterControllerOptions) {
+		this.puppetId = getEnvVarOrThrow("PUPPET_ID");
 		this.options = options;
 	}
 
-	public getFunctionSpecs(
+	public async getFunctionSpecs(
 		functions: NamedAndVersioned[]
 	): Promise<FunctionUseSpec[]> {
-		console.log(`Getting function infos for ${functions.length} functions`);
-		console.warn(`[PuppetMaster] getFunctionInfos not implemented`);
-		return Promise.resolve([]);
+		return fetch(`http://${this.options.host}:${this.options.port}/functions`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(functions),
+		}).then((res) => res.json());
 	}
 
-	public getFriendSpecs(): Promise<PuppetSpec[]> {
-		console.warn(`[PuppetMaster] getFriendInfos not implemented`);
-		return Promise.resolve([]);
+	public async getFriendSpecs(): Promise<PuppetSpec[]> {
+		return fetch(
+			`http://${this.options.host}:${this.options.port}/puppet/${this.puppetId}/friends`
+		).then((res) => res.json());
 	}
 }
 
