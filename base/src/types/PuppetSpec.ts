@@ -1,9 +1,6 @@
 import { parse } from "yaml";
-
-export interface NamedAndVersioned {
-	name: string;
-	version: string;
-}
+import { NamedAndVersioned, ParametersSpec, ReturnSpec } from "./general";
+import { FunctionUseSpec } from "./FunctionSpec";
 
 export interface PuppetSpec extends NamedAndVersioned {
 	type: string;
@@ -19,24 +16,6 @@ export interface AbilitySpec {
 	parameters: ParametersSpec;
 	usableFunction: FunctionUseSpec[];
 	returns: { [key: string]: ReturnSpec };
-}
-
-export interface FunctionUseSpec extends NamedAndVersioned {
-	options: { [key: string]: any };
-}
-
-export interface ParametersSpec {
-	[key: string]: PropertySpec;
-}
-
-export interface PropertySpec {
-	type: string;
-	description: string;
-	optional: boolean;
-}
-
-export interface ReturnSpec extends PropertySpec {
-	template: string;
 }
 
 export function parsePuppetSpec(puppetSpecYaml: string): PuppetSpec {

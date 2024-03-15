@@ -1,8 +1,6 @@
-import {
-	FunctionUseSpec,
-	NamedAndVersioned,
-	PuppetSpec,
-} from "../types/PuppetSpec";
+import { FunctionSpec } from "../types/FunctionSpec";
+import { PuppetSpec } from "../types/PuppetSpec";
+import { NamedAndVersioned } from "../types/general";
 import { getEnvVarOrDefault, getEnvVarOrThrow } from "../util/getEnvVarOrThrow";
 
 export interface PuppetMasterControllerOptions {
@@ -21,20 +19,30 @@ class PuppetMaster {
 
 	public async getFunctionSpecs(
 		functions: NamedAndVersioned[]
-	): Promise<FunctionUseSpec[]> {
+	): Promise<FunctionSpec[]> {
 		return fetch(`http://${this.options.host}:${this.options.port}/functions`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(functions),
-		}).then((res) => res.json());
+		})
+			.then((res) => res.json())
+			.catch((err) => {
+				console.error(err);
+				return [];
+			});
 	}
 
 	public async getFriendSpecs(): Promise<PuppetSpec[]> {
 		return fetch(
 			`http://${this.options.host}:${this.options.port}/puppet/${this.puppetId}/friends`
-		).then((res) => res.json());
+		)
+			.then((res) => res.json())
+			.catch((err) => {
+				console.error(err);
+				return [];
+			});
 	}
 }
 

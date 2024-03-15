@@ -5,17 +5,17 @@ import { AbilitySpec } from "../types/PuppetSpec";
 import { Express } from "express";
 
 export const createAbilityRoute = (app: Express, ability: AbilitySpec) => {
-	app.post(`/abilities/${ability.name}`, (req, res) => {
+	app.post(`/abilities/${ability.name}`, async (req, res) => {
 		console.log(`Received request for ability ${ability.name}`);
 
 		const parameters = req.body;
 		// TODO: Validate parameters
 
-		const functionSpecs = PuppetMasterController.getFunctionSpecs(
+		const functionSpecs = await PuppetMasterController.getFunctionSpecs(
 			ability.usableFunction
 		);
 
-		const friendSpecs = PuppetMasterController.getFriendSpecs();
+		const friendSpecs = await PuppetMasterController.getFriendSpecs();
 
 		console.log(
 			`Executing ability ${ability.name} with parameters: ${JSON.stringify(
@@ -23,7 +23,12 @@ export const createAbilityRoute = (app: Express, ability: AbilitySpec) => {
 			)}`
 		);
 
-		OpenAiAdapter.executeAbility(ability, parameters)
+		OpenAiAdapter.executeAbility(
+			ability,
+			parameters,
+			functionSpecs,
+			friendSpecs
+		)
 			.then((result) => {
 				res.send(result);
 			})
